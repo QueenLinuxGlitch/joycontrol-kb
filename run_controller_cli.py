@@ -57,7 +57,7 @@ Options:
 """
 def keyToConBtn(key): #this method translates recorded key events to respective controller buttons pressed for recording playback
     namedKey = None
-    keyBinding = {'q': 'left', 'w': 'lStickUp', 'e': 'up', 'r': 'zl', 't': 'l', 'y': 'r', 'u': 'zr', 'i': 'rStickUp', 'a': 'lStickL', 's': 'lStickDown', 'd': 'lStickR', 'f': 'right', 'g': 'capture', 'h': 'home', 'j': 'rStickL', 'k': 'rStickDown', 'l':  'rStickR', 'c': 'down', 'up': 'x', 'down': 'b', 'left': 'y', 'right': 'a', '-': 'minus', '+': 'plus'}
+    keyBinding = {'q': 'left', 'w': 'lStickUp', 'e': 'up', 'r': 'zl', 't': 'l', 'y': 'r', 'u': 'zr', 'i': 'rStickUp', 'a': 'lStickL', 's': 'lStickDown', 'd': 'lStickR', 'f': 'right', 'g': 'capture', 'h': 'home', 'j': 'rStickL', 'k': 'rStickDown', 'l':  'rStickR', 'c': 'down', 'up': 'x', 'down': 'b', 'left': 'y', 'right': 'a', '[': 'minus', ']': 'plus'}
     testKeys = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'c', 'up', 'down', 'left', 'right', '+', '-']
     for testKey in testKeys:
         testKeyCode = keyboard.key_to_scan_codes(testKey)
@@ -221,11 +221,11 @@ def bindKeyboard(controller_state: ControllerState):#this method binds specific 
     keyboard.on_press_key('c', DOWNPress)
     keyboard.on_release_key('c', DOWNUnpress)
 
-    keyboard.on_press_key('+', PLUSPress)
-    keyboard.on_release_key('+', PLUSUnpress)
+    keyboard.on_press_key(']', PLUSPress)
+    keyboard.on_release_key(']', PLUSUnpress)
 
-    keyboard.on_press_key('-', MINUSPress)
-    keyboard.on_release_key('-', MINUSUnpress)
+    keyboard.on_press_key('[', MINUSPress)
+    keyboard.on_release_key('[', MINUSUnpress)
 
     keyboard.on_press_key('up', XPress)
     keyboard.on_release_key('up', XUnpress)

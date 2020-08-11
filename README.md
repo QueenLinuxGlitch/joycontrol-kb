@@ -59,7 +59,6 @@ Call "help" to see a list of available commands.
   Not sure yet what exactly a real controller does to prevent that.
   A workaround is to use the reconnect option after a controller was paired once, so that
   opening of the "Change Grip/Order" menu is not required.
-- Currently Plus and Minus Keys are nonfunctioning in keyboard input mode
 
 
 ## Resources
