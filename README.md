@@ -1,7 +1,6 @@
-# joycontrol-ms
-Emulate Nintendo Switch Controllers over Bluetooth.
-
-Tested on Raspberry Pi 4B
+# joycontrol-kb
+Emulate Nintendo Switch Controllers over Bluetooth w/ Amiibo Support through Python3
+Tested on Debian, Generic Hardware
 
 ## Features
 Emulation of JOYCON_R, JOYCON_L and PRO_CONTROLLER.
@@ -10,15 +9,16 @@ Emulation of JOYCON_R, JOYCON_L and PRO_CONTROLLER.
 - nfc data
 - controller keybinding
 - controller macro recording, playback, deleting
-- [SparkFun Top pHAT](https://www.sparkfun.com/products/16301?_ga=2.239021640.918075716.1594175635-1216658051.1509937706) integration
-
 ## Installation
-Set up your Top pHAT by following the guide [here](https://learn.sparkfun.com/tutorials/sparkfun-top-phat-hookup-guide?_ga=2.239584971.918075716.1594175635-1216658051.1509937706)
 - Install dependencies
 
-Ubuntu: Install the `dbus-python` `libhidapi-hidraw0` and `keyboard` packages
+Deb-systems: Install the `dbus-python` `libhidapi-hidraw0` and `keyboard` packages
 ```bash
-sudo apt install python3-dbus libhidapi-hidraw0 keyboard
+sudo apt install python3-dbus libhidapi-hidraw0
+```
+
+```bash
+sudo pip3 install keyboard
 ```
 
 Arch Linux Derivatives: Install the `hidapi` and `bluez-utils-compat`(AUR) packages
@@ -59,7 +59,7 @@ Call "help" to see a list of available commands.
   Not sure yet what exactly a real controller does to prevent that.
   A workaround is to use the reconnect option after a controller was paired once, so that
   opening of the "Change Grip/Order" menu is not required.
-- ...
+- Currently Plus and Minus Keys are nonfunctioning in keyboard input mode
 
 
 ## Resources
