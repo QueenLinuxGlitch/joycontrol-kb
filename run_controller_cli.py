@@ -7,8 +7,6 @@ import os
 import keyboard
 import time
 import shelve
-import board
-import neopixel
 
 from aioconsole import ainput
 
@@ -297,19 +295,13 @@ async def directStateUNSet(btnTrans, controller_state: ControllerState): #this m
         ControllerCLI._set_stick(RightStick, 'center', None)
         await controller_state.send()
 
-pixels = neopixel.NeoPixel(board.D12, 6)
-
 async def delete_recording(controller_state: ControllerState): #This method deletes saved recordings
     if controller_state.get_controller() != Controller.PRO_CONTROLLER:
         raise ValueError('This script only works with the Pro Controller!')
     # waits until controller is fully connected
     await controller_state.connect()
     savedRecordings = shelve.open('savedRecs', writeback=True)
-    #pixels = neopixel.NeoPixel(board.D12, 6, auto_write=False)
     recList = list(savedRecordings.keys())
-    pixels.fill((0, 0, 0))
-    pixels.fill((0, 0, 10))
-    pixels.fill((0, 0, 10))
     print('Saved Recordings:')
     print(recList)
     print('Enter the name of the recording you want to delete')
@@ -320,8 +312,6 @@ async def delete_recording(controller_state: ControllerState): #This method dele
         print('Recording deleted')
     else:
         print('Recording name not recognized')
-    pixels.fill((0, 0, 0))
-    pixels.fill((0, 0, 0))
 
 async def recording_playback(controller_state: ControllerState): #This method replays saved recordings
     if controller_state.get_controller() != Controller.PRO_CONTROLLER:
@@ -329,7 +319,6 @@ async def recording_playback(controller_state: ControllerState): #This method re
     # waits until controller is fully connected
     await controller_state.connect()
     savedRecordings = shelve.open('savedRecs', writeback=True)
-    #pixels = neopixel.NeoPixel(board.D12, 6, auto_write=False)
     LeftStick = controller_state.l_stick_state
     RightStick = controller_state.r_stick_state
     recList = list(savedRecordings.keys())
@@ -339,9 +328,6 @@ async def recording_playback(controller_state: ControllerState): #This method re
     print('Then press <enter> to start playback.')
     recordingName = await ainput(prompt='Recording name:')
     if recordingName in recList:
-        pixels.fill((0, 0, 0))
-        pixels.fill((0, 10, 0))
-        pixels.fill((0, 10, 0))
         recording = savedRecordings[recordingName]
         speed_factor = 1
         last_time = None
@@ -353,8 +339,6 @@ async def recording_playback(controller_state: ControllerState): #This method re
             btnTrans = keyToConBtn(key)
             await directStateSet(btnTrans, controller_state) if event.event_type == keyboard.KEY_DOWN else  await directStateUNSet(btnTrans, controller_state)
         keyboard.unhook_all()
-        pixels.fill((0, 0, 0))
-        pixels.fill((0, 0, 0))
         ControllerCLI._set_stick(RightStick, 'center', None)
         ControllerCLI._set_stick(LeftStick, 'center', None)
         await controller_state.send()
@@ -369,7 +353,6 @@ async def record_keyboard(controller_state: ControllerState): #this method binds
     print('Using only letters and numbers, type a name for this recording')
     print('Then press <enter> to start recording keyboard control.')
     recordingName = await ainput(prompt='Recording name:')
-    #pixels = neopixel.NeoPixel(board.D12, 6, auto_write=False)
 
     #button state handler callbacks
     savedRecordings = shelve.open('savedRecs', writeback=True)
@@ -377,14 +360,8 @@ async def record_keyboard(controller_state: ControllerState): #this method binds
     RightStick = controller_state.r_stick_state
     bindKeyboard(controller_state)
     keyboard.start_recording()
-    pixels.fill((0, 0, 0))
-    pixels.fill((10, 0, 0))
-    pixels.fill((10, 0, 0))
     await ainput(prompt='Press <enter> to stop recording and exit keyboard control.')
     recording = keyboard.stop_recording()
-    pixels.fill((0, 0, 0))
-    pixels.fill((0, 0, 0))
-
     keyboard.unhook_all()
 
     savedRecordings[recordingName] = recording
