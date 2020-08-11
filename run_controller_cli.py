@@ -542,7 +542,7 @@ async def _main(args):
             q=LEFT w=LstickUP e=UP r=ZL t=L y=R u=ZR i=RstickUP
             a=LstickLEFT s=LstickDOWN d=LstickRIGHT f=RIGHT g=capture h=home j=RstickLEFT k=RStickDOWN l=RstickRIGHT
             c=DOWN up=X down=B left=Y right=A
-            plus= + minus= -
+            ]= + [= -
             """
             await keyboard_control(controller_state)
         async def _run_recording_control():
@@ -553,7 +553,7 @@ async def _main(args):
             q=LEFT w=LstickUP e=UP r=ZL t=L y=R u=ZR i=RstickUP
             a=LstickLEFT s=LstickDOWN d=LstickRIGHT f=RIGHT g=capture h=home j=RstickLEFT k=RStickDOWN l=RstickRIGHT
             c=DOWN up=X down=B left=Y right=A
-            plus= + minus= -
+            ]= + [= -
             """
             await record_keyboard(controller_state)
 
